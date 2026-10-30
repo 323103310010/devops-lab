@@ -1,5 +1,5 @@
 ---
-- nme: Deploy the Greeting application
+- name: Deploy the Greeting application
   hosts: tradelive
   become: yes
 
@@ -42,7 +42,7 @@
         name: greeting.service
         daemon_reload: yes
         state: started
-        enabled: yes
+        enabled:
 
   handlers:
     - name: Restart Greeting
