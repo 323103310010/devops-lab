@@ -1,0 +1,21 @@
+---
+- name: Provision the tradelive VM
+  hosts: tradelive
+  become: yes
+  become_method: sudo
+  vars_files:
+    - vars/secrets.yml
+
+  tasks:
+    - name: Install libpam-pwquality
+      package:
+        name: libpam-pwquality
+        state: present
+
+    - name: Enforce a strong password policy
+      lineinfile:
+        path: /etc/pam.d/common-password
+        regexp: pam_pwquality.so
+        state: present
+        line: >-
+    
